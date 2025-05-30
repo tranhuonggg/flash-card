@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaBook, FaQuestionCircle, FaLightbulb } from "react-icons/fa";
 
 const FlashcardForm = ({ onSave }) => {
     const [question, setQuestion] = useState("");
@@ -8,7 +9,7 @@ const FlashcardForm = ({ onSave }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!question.trim() || !answer.trim() || !subject.trim()) {
-            alert("Vui lòng điền đầy đủ các trường!");
+            alert("⚠️ Vui lòng điền đầy đủ các trường!");
             return;
         }
         onSave({ question, answer, subject: subject.toLowerCase() });
@@ -20,53 +21,57 @@ const FlashcardForm = ({ onSave }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 space-y-5 transition-all"
         >
-            <div className="mb-5">
-                <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-                    Chủ đề
+            {/* Chủ đề */}
+            <div>
+                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 flex items-center gap-2">
+                    <FaBook className="text-indigo-500" /> Chủ đề
                 </label>
                 <input
                     type="text"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    placeholder="Ví dụ: Toán, Lịch sử..."
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    placeholder="Ví dụ: Toán, Sinh học, Lịch sử..."
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
                     required
                 />
             </div>
 
-            <div className="mb-5">
-                <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-                    Câu hỏi
+            {/* Câu hỏi */}
+            <div>
+                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 flex items-center gap-2">
+                    <FaQuestionCircle className="text-blue-500" /> Câu hỏi
                 </label>
                 <textarea
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
-                    placeholder="Nhập câu hỏi..."
+                    placeholder="Nhập câu hỏi bạn muốn học..."
                     rows={3}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
                     required
                 />
             </div>
 
-            <div className="mb-6">
-                <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-                    Đáp án
+            {/* Đáp án */}
+            <div>
+                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 flex items-center gap-2">
+                    <FaLightbulb className="text-yellow-500" /> Đáp án
                 </label>
                 <textarea
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
-                    placeholder="Nhập đáp án..."
+                    placeholder="Nhập đáp án cho câu hỏi..."
                     rows={3}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white"
                     required
                 />
             </div>
 
+            {/* Nút lưu */}
             <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition duration-300"
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition duration-300 text-lg"
             >
                 💾 Lưu thẻ
             </button>
